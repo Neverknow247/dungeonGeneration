@@ -2,6 +2,7 @@ extends Node
 class_name Walker
 
 const Directions = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
+const Enemy = preload("res://Enemy.tscn")
 
 var position = Vector2.ZERO
 var direction = Vector2.RIGHT
