@@ -7,6 +7,9 @@ const Enemy = preload("res://Enemy.tscn")
 var borders = Rect2(1,1,38,21)
 var walker = Walker.new(Vector2(19,11), borders)
 var player_position = 0;
+var enemies = []
+
+
 
 onready var tileMap = $TileMap
 
@@ -21,13 +24,14 @@ func generate_level():
 	add_child(player)
 	player.position = map.front()*32
 	player_position = player.position
+	enemies.push_front(player.position)
 	
 	var exit = Exit.instance()
 	add_child(exit)
 	exit.position = walker.get_end_room().position*32
 	exit.connect("leaving_level", self, "reload_level")
 	
-	add_enemies()
+	add_enemies(exit)
 	
 	walker.queue_free()
 	for location in map:
@@ -36,18 +40,35 @@ func generate_level():
 	tileMap.update_bitmask_region(borders.position, borders.end)
 
 func reload_level():
+	enemies = []
 	get_tree().reload_current_scene()
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		reload_level()
 
-func add_enemies():
+func add_enemies(exit):
 	var rooms = walker.rooms
 	for room in range(0,rooms.size()):
 		if ((rooms[room].position)*32).distance_to(player_position) < 150:
 			pass
+		elif ((rooms[room].position)*32).distance_to(exit.position) < 50:
+			pass
+#		elif ((rooms[room].position)*32).distance_to(enemies[0]) < 50:
+#			pass
 		else:
-			var enemy = Enemy.instance()
-			add_child(enemy)
-			enemy.position = rooms[room].position*32
+			var close = false
+			for e in range(0,enemies.size()):
+				if ((rooms[room].position)*32).distance_to(enemies[e]) < 10:
+					close = true
+			if close == true:
+				pass
+			else:
+				var random = floor(rand_range(1,4))
+#				print(random)
+				if random == 1:
+					var enemy = Enemy.instance()
+					add_child(enemy)
+					enemy.position = rooms[room].position*32
+					enemies.push_front(enemy.position)
+					print(enemies)
