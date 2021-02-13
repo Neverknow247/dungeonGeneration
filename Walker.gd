@@ -2,7 +2,6 @@ extends Node
 class_name Walker
 
 const Directions = [Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN]
-const Enemy = preload("res://Enemy.tscn")
 
 var position = Vector2.ZERO
 var direction = Vector2.RIGHT
@@ -51,7 +50,7 @@ func change_direction():
 		direction = directions.pop_front()
 
 
-func place_room(position):
+func place_room(_position):
 	var size = Vector2(randi() % 4 + 2, randi() % 4 + 2)
 	var top_left_corner = (position - size/2).ceil()
 	rooms.append(create_room(position, size))
@@ -62,7 +61,7 @@ func place_room(position):
 				step_history.append(new_step)
 				
 
-func create_room(poition, size):
+func create_room(_position, size):
 	return{position = position, size = size}
 
 func get_end_room():

@@ -21,12 +21,13 @@ _global_script_class_icons={
 [application]
 
 config/name="WalkerLevelGeneration"
-run/main_scene="res://World.tscn"
+run/main_scene="res://Menus/NeverknowSS.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 AutoLoad="*res://AutoLoad.tscn"
+Stats="*res://Autoloader/Stats.tscn"
 
 [display]
 

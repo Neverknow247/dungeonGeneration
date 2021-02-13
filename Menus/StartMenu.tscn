@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/SlickerTitleDynamicFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Menus/StartMenu.gd" type="Script" id=2]
+[ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "StartGame"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0862745, 0, 0, 1 ), Color( 0.0862745, 0, 0, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "StartGame"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Title/VBoxContainer/TitleFont:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10, 15, 20 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.960784, 0.776471, 0.776471, 1 ), Color( 0.584314, 0, 0, 1 ) ]
+}
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -48.0
+margin_right = 48.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Title"]
+margin_left = 3.0
+margin_right = 93.0
+margin_bottom = 48.0
+
+[node name="Control" type="Control" parent="Title/VBoxContainer"]
+margin_right = 90.0
+
+[node name="TitleFont" type="Label" parent="Title/VBoxContainer"]
+margin_top = 4.0
+margin_right = 90.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 1 )
+text = "slicker"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Title"
+anims/StartGame = SubResource( 1 )
+anims/Title = SubResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 125.0
+margin_top = 51.0
+margin_right = 195.0
+margin_bottom = 129.0
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_right = 70.0
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 70.0
+margin_bottom = 26.0
+text = "Start Game"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 70.0
+margin_bottom = 52.0
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 70.0
+margin_bottom = 78.0
+text = "Quit"
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

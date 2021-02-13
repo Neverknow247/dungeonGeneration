@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Enemies/PlayerDetectionZone.gd" type="Script" id=1]
+[ext_resource path="res://Lifeform/HitBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/Ghost.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/female_scream.wav" type="AudioStream" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 55.0
+
+[node name="Ghost" type="KinematicBody2D"]
+light_mask = 2
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 2
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 8.0
+color = Color( 0.411765, 0.0117647, 0.541176, 0.560784 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerDetectionZone" type="Area2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
+position = Vector2( 0, -0.397217 )
+shape = SubResource( 1 )
+
+[node name="HitBox" parent="." instance=ExtResource( 2 )]
+
+[node name="Scream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+[connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

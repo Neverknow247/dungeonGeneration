@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Enemies/Stalker.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/PlayerDetectionZone.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/StalkerIdleAnimation.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 100.0
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 700.0
+
+[sub_resource type="Animation" id=6]
+resource_name = "IdleDown"
+length = 0.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "IdleLeft"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "IdleRight"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "IdleUp"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5 ]
+}
+
+[node name="Stalker" type="KinematicBody2D"]
+light_mask = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 2
+position = Vector2( 0, -1 )
+texture = ExtResource( 4 )
+vframes = 4
+hframes = 3
+frame = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="StopDetectionZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StopDetectionZone"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 5 )
+
+[node name="PlayerDetectionZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
+shape = SubResource( 3 )
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/IdleDown = SubResource( 6 )
+anims/IdleLeft = SubResource( 7 )
+anims/IdleRight = SubResource( 8 )
+anims/IdleUp = SubResource( 9 )
+[connection signal="body_entered" from="StopDetectionZone" to="StopDetectionZone" method="_on_PlayerDetectionZone_body_entered"]
+[connection signal="body_exited" from="StopDetectionZone" to="StopDetectionZone" method="_on_PlayerDetectionZone_body_exited"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
+[connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_exited"]
