@@ -2,10 +2,16 @@ extends Control
 
 var stats = Stats
 
-onready var roomLabel = $RoomLabel
+onready var floorLabel = $VBoxContainer/FloorLabel
+onready var currencyLabel = $VBoxContainer/CurrencyLabel
 
 func _ready() -> void:
-	setRoomLabel()
+	setLabels()
+	stats.connect("playerCurrencyChanged", self, "onPlayerCurrencyChanged")
 
-func setRoomLabel():
-	roomLabel.text = "Rooms Complete: " + str(stats.roomsComplete)
+func setLabels():
+	floorLabel.text = "floor: " + str(stats.currentFloor)
+	currencyLabel.text = "currency: "+ str(stats.currency)
+
+func onPlayerCurrencyChanged(value):
+	currencyLabel.text = "currency: "+ str(value)

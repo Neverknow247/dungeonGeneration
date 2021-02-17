@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/SlickerTitleDynamicFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Menus/StartMenu.gd" type="Script" id=2]
 [ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=3]
+[ext_resource path="res://UI/SlickerSmallDynamicFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Menus/MenuStats.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "StartGame"
@@ -99,31 +101,99 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 125.0
-margin_top = 51.0
-margin_right = 195.0
-margin_bottom = 129.0
+margin_left = 128.0
+margin_top = 38.0
+margin_right = 192.0
+margin_bottom = 142.0
+alignment = 1
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_right = 70.0
+margin_right = 64.0
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 4.0
-margin_right = 70.0
+margin_right = 64.0
 margin_bottom = 26.0
-text = "Start Game"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "start game"
+
+[node name="ExtrasButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 64.0
+margin_bottom = 52.0
+text = "extras"
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 30.0
-margin_right = 70.0
-margin_bottom = 52.0
-text = "Options"
+margin_left = 9.0
+margin_top = 56.0
+margin_right = 54.0
+margin_bottom = 78.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "options"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 56.0
-margin_right = 70.0
-margin_bottom = 78.0
-text = "Quit"
+margin_left = 17.0
+margin_top = 82.0
+margin_right = 47.0
+margin_bottom = 104.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "quit"
+
+[node name="MenuStats" type="CenterContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuStats"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 40.0
+
+[node name="HighestFloorLabel" type="Label" parent="MenuStats/VBoxContainer"]
+margin_right = 8.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="CurrencyLabel" type="Label" parent="MenuStats/VBoxContainer"]
+margin_top = 22.0
+margin_right = 8.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+align = 2
+
+[node name="TouchScreen" type="CenterContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 95.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TouchScreen"]
+margin_top = 8.0
+margin_right = 95.0
+margin_bottom = 32.0
+
+[node name="CheckBox" type="CheckBox" parent="TouchScreen/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="TouchScreen/HBoxContainer"]
+margin_left = 28.0
+margin_top = 3.0
+margin_right = 95.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 4 )
+text = "enable touchscreen"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ExtrasButton" to="." method="_on_ExtrasButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="toggled" from="TouchScreen/HBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]

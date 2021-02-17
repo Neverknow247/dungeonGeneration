@@ -13,8 +13,10 @@ var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
 
 var state = IDLE
+var idle = true;
 
 
+onready var Animator = $Animator
 onready var playerDetectionZone = $PlayerDetectionZone
 #onready var wanderController = $WanderController
 
@@ -26,6 +28,10 @@ func _physics_process(delta):
 		IDLE:
 			velocity = velocity.linear_interpolate(Vector2.ZERO, 0.1)
 			seek_player()
+			if idle == false:
+				Animator.play("Idle")
+				idle = true;
+			
 #			if wanderController.getTimeLeft() == 0:
 #				state = pick_random_state([IDLE,WANDER])
 #				wanderController.startWanderTimer(rand_range(1,3))
@@ -41,7 +47,9 @@ func _physics_process(delta):
 		CHASE:
 			var player = playerDetectionZone.get_player()
 			if player != null:
+				idle = false;
 				accelerate_to_point(player.global_position, ACCELERATION * delta)
+				updateAnimations()
 			else:
 				state = IDLE
 	
@@ -49,6 +57,26 @@ func _physics_process(delta):
 
 func seek_player():
 		state = CHASE
+
+func updateAnimations():
+	var player = playerDetectionZone.get_player()
+	if player != null:
+		var dir = Vector2((player.position.x - self.position.x),(player.position.y - self.position.y))
+#		var facing = dir.angle()
+		if dir.y < dir.x:
+			if dir.x < 0:
+				Animator.play("Up")
+			elif dir.y*-1>dir.x:
+				Animator.play("Up")
+			else:
+				Animator.play("Right")
+		else:
+			if dir.y < 0:
+				Animator.play("Left")
+			elif dir.x*-1>dir.y:
+				Animator.play("Left")
+			else:
+				Animator.play("Down")
 
 func pick_random_state(state_list):
 	state_list.shuffle()
@@ -72,6 +100,8 @@ func _on_Hurtbox_area_entered(area):
 	var knockback_vector = area.get_parent().get_parent().roll_vector # TODO: Clean this
 	knockback = knockback_vector * 400
 
+func playStep():
+	SoundFX.play("CrawlerStep",rand_range(1.0,1.6),0)
 
 func _on_HitBox_body_entered(_body: Node) -> void:
 # warning-ignore:return_value_discarded

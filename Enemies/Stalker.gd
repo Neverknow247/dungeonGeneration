@@ -29,6 +29,7 @@ func _physics_process(delta):
 			velocity = velocity.linear_interpolate(Vector2.ZERO, 0.5)
 			seek_player()
 			updateAnimations()
+			breathe()
 #			if wanderController.getTimeLeft() == 0:
 #				state = pick_random_state([IDLE,WANDER])
 #				wanderController.startWanderTimer(rand_range(1,3))
@@ -77,6 +78,11 @@ func updateAnimations():
 				Animator.play("IdleUp")
 #		print(facing)
 #		print(dir.x)
+
+func breathe():
+	var rand = floor(rand_range(0,100))
+	if rand == 0:
+		SoundFX.play("StalkerBreathe", rand_range(0.6,1.0),-5)
 
 func pick_random_state(state_list):
 	state_list.shuffle()

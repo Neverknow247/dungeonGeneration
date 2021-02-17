@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const ACCELERATION = 200
-const MAX_SPEED = 70
+const MAX_SPEED = 65
 
 enum {
 	IDLE,
@@ -16,7 +16,7 @@ var screamed = false;
 var state = IDLE
 
 
-onready var scream = $Scream
+onready var Animator = $Animator
 onready var playerDetectionZone = $PlayerDetectionZone
 #onready var wanderController = $WanderController
 
@@ -44,9 +44,10 @@ func _physics_process(delta):
 			var player = playerDetectionZone.get_player()
 			if player != null:
 				if screamed == false:
-					scream.play()
+					SoundFX.play("GhostScream",rand_range(0.8, 1.2))
 				screamed = true;
 				accelerate_to_point(player.global_position, ACCELERATION * delta)
+				updateAnimations()
 			else:
 				state = IDLE
 	
@@ -54,6 +55,26 @@ func _physics_process(delta):
 
 func seek_player():
 		state = CHASE
+
+func updateAnimations():
+	var player = playerDetectionZone.get_player()
+	if player != null:
+		var dir = Vector2((player.position.x - self.position.x),(player.position.y - self.position.y))
+#		var facing = dir.angle()
+		if dir.y < dir.x:
+			if dir.x < 0:
+				Animator.play("Up")
+			elif dir.y*-1>dir.x:
+				Animator.play("Up")
+			else:
+				Animator.play("Right")
+		else:
+			if dir.y < 0:
+				Animator.play("Left")
+			elif dir.x*-1>dir.y:
+				Animator.play("Left")
+			else:
+				Animator.play("Down")
 
 func pick_random_state(state_list):
 	state_list.shuffle()

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/female_scream.wav-e69ec5dc4ada52afc9322e45e91f6712.sample"
+path="res://.import/step.wav-c4a048a2b5b44097e31df11f8b4cb6ae.sample"
 
 [deps]
 
-source_file="res://Sounds/female_scream.wav"
-dest_files=[ "res://.import/female_scream.wav-e69ec5dc4ada52afc9322e45e91f6712.sample" ]
+source_file="res://Sounds/step.wav"
+dest_files=[ "res://.import/step.wav-c4a048a2b5b44097e31df11f8b4cb6ae.sample" ]
 
 [params]
 
