@@ -1,39 +1,69 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/LightBuddy.gd" type="Script" id=1]
 [ext_resource path="res://UI/Lights/AnimatedLight.tres" type="Texture" id=2]
 [ext_resource path="res://Lifeform/PlayerDetectionZone.gd" type="Script" id=3]
 [ext_resource path="res://Lifeform/StopDetectionZone.gd" type="Script" id=4]
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 0.703541
+[ext_resource path="res://Lifeform/LightBuddy.png" type="Texture" id=5]
+[ext_resource path="res://Lifeform/LightShadow.gd" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 700.0
+radius = 3.0
 
 [sub_resource type="CircleShape2D" id=2]
+radius = 700.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 7.52385
 
 [node name="LightBuddy" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
+light_mask = 2
+position = Vector2( 0, -8 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.493049, 0.504005 )
-shape = SubResource( 3 )
+position = Vector2( 0, -8 )
+shape = SubResource( 1 )
+
+[node name="LightShadow" type="Node2D" parent="."]
+position = Vector2( 0, -8 )
+script = ExtResource( 6 )
+
+[node name="Light" type="Light2D" parent="LightShadow"]
+range_item_cull_mask = 2
+shadow_enabled = true
+
+[node name="Shadow" type="Light2D" parent="LightShadow"]
+mode = 3
+range_item_cull_mask = 2
+shadow_enabled = true
+
+[node name="Timer" type="Timer" parent="LightShadow"]
+wait_time = 30.0
+one_shot = true
 
 [node name="Light" type="Light2D" parent="."]
-position = Vector2( 0.478805, 0.468396 )
+visible = false
+position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 range_item_cull_mask = 2
 shadow_enabled = true
 
 [node name="Shadow" type="Light2D" parent="."]
-position = Vector2( 0.482574, 0.506012 )
+visible = false
+position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 mode = 3
 range_item_cull_mask = 2
 shadow_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_right = 1.0
 margin_bottom = 1.0
 color = Color( 1, 0.780392, 0.313726, 1 )
@@ -42,22 +72,21 @@ __meta__ = {
 }
 
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
-position = Vector2( 0.493049, 0.493049 )
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="StopDetectionZone" type="Area2D" parent="."]
-position = Vector2( 0.493049, 0.504005 )
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StopDetectionZone"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
+[connection signal="timeout" from="LightShadow/Timer" to="LightShadow" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_exited"]
 [connection signal="body_entered" from="StopDetectionZone" to="StopDetectionZone" method="_on_StopDetectionZone_body_entered"]

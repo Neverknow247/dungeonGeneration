@@ -3,15 +3,15 @@ extends Control
 var stats = Stats
 
 onready var floorLabel = $VBoxContainer/FloorLabel
-onready var currencyLabel = $VBoxContainer/CurrencyLabel
+onready var teethLabel = $VBoxContainer/TeethLabel
 
 func _ready() -> void:
 	setLabels()
-	stats.connect("playerCurrencyChanged", self, "onPlayerCurrencyChanged")
+	stats.connect("playerTeethChanged", self, "onPlayerTeethChanged")
 
 func setLabels():
 	floorLabel.text = "floor: " + str(stats.currentFloor)
-	currencyLabel.text = "currency: "+ str(stats.currency)
+	teethLabel.text = "teeth: "+ str(stats.teeth)
 
-func onPlayerCurrencyChanged(value):
-	currencyLabel.text = "currency: "+ str(value)
+func onPlayerTeethChanged(value):
+	teethLabel.text = "teeth: "+ str(value)

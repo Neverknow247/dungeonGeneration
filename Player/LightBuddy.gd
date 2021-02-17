@@ -42,7 +42,10 @@ func _physics_process(delta):
 			if tooClose !=null:
 				state = IDLE 
 			elif player != null:
-				accelerate_to_point(player.global_position, ACCELERATION * delta)
+				var rand = floor(rand_range(-4,5))
+				var direction = Vector2(player.global_position.x+rand,player.global_position.y+rand)
+#				print(player.global_position)
+				accelerate_to_point(direction, ACCELERATION * delta)
 			else:
 				state = IDLE
 	

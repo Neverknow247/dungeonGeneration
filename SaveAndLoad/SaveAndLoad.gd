@@ -4,12 +4,17 @@ const SAVE_DATA_PATH = "res://save_data.json"
 #const SAVE_DATA_PATH = "user://save_data.json"
 
 var default_save_data = {
+	#stats
 	totalStepsTaken = 0,
 	totalFloorsComplete = 0,
-	totalCurrencyCollected = 0,
+	totalTeethCollected = 0,
 	highestFloor = 1,
-	currency = 0
-#	collection = 0
+	
+	#currency
+	teeth = 0,
+	
+	#upgrades
+	lightRangeBoost = 0
 }
 
 func save_data_to_file(save_data):

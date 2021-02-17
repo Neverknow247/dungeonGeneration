@@ -13,7 +13,8 @@ func _on_Timer_timeout() -> void:
 func loadData():
 	var saveData = SaveAndLoad.load_data_from_file()
 	stats.highestFloor = saveData.highestFloor
-	stats.currency = saveData.currency
+	stats.teeth = saveData.teeth
 	stats.totalStepsTaken = saveData.totalStepsTaken
 	stats.totalFloorsComplete = saveData.totalFloorsComplete
-	stats.totalCurrencyCollected = saveData.totalCurrencyCollected
+	stats.totalTeethCollected = saveData.totalTeethCollected
+	stats.lightRangeBoost = saveData.lightRangeBoost

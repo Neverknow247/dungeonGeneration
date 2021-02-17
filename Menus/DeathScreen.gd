@@ -27,11 +27,14 @@ func updateSaveData():
 	var saveData = SaveAndLoad.load_data_from_file()
 	if stats.currentFloor > saveData.highestFloor:
 		saveData.highestFloor = stats.currentFloor
-	saveData.currency = stats.currency
+	saveData.teeth = stats.teeth
 	saveData.totalStepsTaken = stats.totalStepsTaken
 	saveData.totalFloorsComplete = stats.totalFloorsComplete
-	saveData.totalCurrencyCollected = stats.totalCurrencyCollected
+	saveData.totalTeethCollected = stats.totalTeethCollected
+	saveData.lightRangeBoost = stats.lightRangeBoost
 	stats.highestFloor = saveData.highestFloor
+	stats.totalFloorsComplete = saveData.totalFloorsComplete
+	stats.totalStepsTaken = saveData.totalStepsTaken
 	SaveAndLoad.save_data_to_file(saveData)
 
 func _input(_event: InputEvent) -> void:

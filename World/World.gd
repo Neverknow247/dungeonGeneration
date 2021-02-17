@@ -8,7 +8,7 @@ var stats = Stats
 const Player = preload("res://Player/Player.tscn")
 const LightBuddy = preload("res://Lifeform/LightBuddy.tscn")
 const Exit = preload("res://ExitDoor.tscn")
-const Currency = preload("res://Items/Currency.tscn")
+const Tooth = preload("res://Items/Tooth.tscn")
 const Crawler = preload("res://Enemies/Crawler.tscn")
 const Ghost = preload("res://Enemies/Ghost.tscn")
 const Stalker = preload("res://Enemies/Stalker.tscn")
@@ -51,9 +51,9 @@ func generate_level():
 	stats.player = player
 #	.position*32
 	
-#	var lightBuddy = LightBuddy.instance()
-#	entityLayer.add_child(lightBuddy)
-#	lightBuddy.position = player.position
+	var lightBuddy = LightBuddy.instance()
+	entityLayer.add_child(lightBuddy)
+	lightBuddy.position = player.position
 	
 	var exit = Exit.instance()
 	entityLayer.add_child(exit)
@@ -123,8 +123,8 @@ func addItems(exit):
 		else:
 			var rand = floor(rand_range(0,10))
 			if rand == 0:
-				var currency = Currency.instance()
-				summonItems(rooms,room,currency)
+				var tooth = Tooth.instance()
+				summonItems(rooms,room,tooth)
 
 func summonItems(rooms,room,item):
 	entityLayer.add_child(item)

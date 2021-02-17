@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 func getButtonPos():
 	return position + radius
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
 		var eventDistanceFromCenter = (event.position - get_parent().global_position).length()
 		

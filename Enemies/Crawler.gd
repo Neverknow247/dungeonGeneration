@@ -101,7 +101,7 @@ func _on_Hurtbox_area_entered(area):
 	knockback = knockback_vector * 400
 
 func playStep():
-	SoundFX.play("CrawlerStep",rand_range(1.0,1.6),0)
+	SoundFX.play("CrawlerStep",rand_range(1.0,1.6),+5)
 
 func _on_HitBox_body_entered(_body: Node) -> void:
 # warning-ignore:return_value_discarded

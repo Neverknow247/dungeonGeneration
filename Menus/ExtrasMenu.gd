@@ -1,11 +1,12 @@
 extends Control
 
 onready var BackButton = $BackButton
+onready var StoreButton = $CenterContainer/VBoxContainer/StoreButton
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	VisualServer.set_default_clear_color(Color.black)
-	BackButton.grab_focus()
+	StoreButton.grab_focus()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("Escape"):
