@@ -9,23 +9,24 @@ onready var timer  = $Timer
 
 var stats = Stats
 
-#var lightRange = stats.lightRangeBoost
+#if kindling will not expire until the end of a floor
+#var kindling = stats.kindling
 
 func _ready() -> void:
 	setLightAndShadow()
 
 func setLightAndShadow():
-	var lightRange = stats.lightRangeBoost
-	if lightRange > 0:
-		stats.lightRangeBoost -= 1
+	var kindling = stats.kindling
+	if kindling > 0:
+		stats.kindling -= 1
 		light.set_texture(LightTextureLarge)
 		shadow.set_texture(LightTextureLarge)
 		timer.start()
+		SaveAndLoad.updateSaveData()
 	else:
 		light.set_texture(LightTextureNormal)
 		shadow.set_texture(LightTextureNormal)
 
 
 func _on_Timer_timeout() -> void:
-#	print("now"+str(lightRange))
 	setLightAndShadow()

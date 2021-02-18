@@ -7,6 +7,7 @@ var stats = Stats
 
 const Player = preload("res://Player/Player.tscn")
 const LightBuddy = preload("res://Lifeform/LightBuddy.tscn")
+const FlashLight = preload("res://Player/FlashLight.tscn")
 const Exit = preload("res://ExitDoor.tscn")
 const Tooth = preload("res://Items/Tooth.tscn")
 const Crawler = preload("res://Enemies/Crawler.tscn")
@@ -31,7 +32,7 @@ func _ready():
 	VisualServer.set_default_clear_color(shadowColor)
 	if audio.inMenu == true:
 		audio.PlayLevelMusic()
-	if stats.touchscreen == true:
+	if stats.touchscreen == true || stats.flashlight == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -39,6 +40,7 @@ func _ready():
 	generate_level()
 #	generateHiddenRoom()
 	SoundFX.play("LevelStart",1,-10)
+	SaveAndLoad.updateSaveData()
 
 func generate_level():
 	var map = walker.walk(200)
@@ -51,9 +53,7 @@ func generate_level():
 	stats.player = player
 #	.position*32
 	
-	var lightBuddy = LightBuddy.instance()
-	entityLayer.add_child(lightBuddy)
-	lightBuddy.position = player.position
+	addLights(player)
 	
 	var exit = Exit.instance()
 	entityLayer.add_child(exit)
@@ -82,6 +82,16 @@ func reload_level():
 func _input(_event):
 	pass
 
+func addLights(player):
+	if stats.flashlight == true:
+		var flashLight = FlashLight.instance()
+		entityLayer.get_node("Player").add_child(flashLight)
+		flashLight.position.y -=4
+	else:
+		var lightBuddy = LightBuddy.instance()
+		entityLayer.add_child(lightBuddy)
+		lightBuddy.position = player.position
+
 func add_enemies(exit):
 	var rooms = walker.rooms
 	for room in range(0,rooms.size()):
@@ -101,17 +111,20 @@ func add_enemies(exit):
 				if random == 2:
 					var crawler = Crawler.instance()
 					summonEntity(rooms,room,crawler)
+					stats.crawlerSpawns += 1
 				if random == 0 && isGhost == false:
 					if ghostCounter == 5:
 						isGhost = true;
 						var ghost = Ghost.instance()
 						summonEntity(rooms,room,ghost)
+						stats.ghostSpawns += 1
 					else:
 						ghostCounter += 1
 				if random == 1 && stalkers < 2:
 					stalkers += 1;
 					var stalker = Stalker.instance()
 					summonEntity(rooms,room,stalker)
+					stats.stalkerSpawns += 1
 
 func addItems(exit):
 	var rooms = walker.rooms
@@ -122,9 +135,14 @@ func addItems(exit):
 			pass
 		else:
 			var rand = floor(rand_range(0,10))
-			if rand == 0:
-				var tooth = Tooth.instance()
-				summonItems(rooms,room,tooth)
+			if stats.flashlight == true:
+				if rand == 0 || rand == 1:
+					var tooth = Tooth.instance()
+					summonItems(rooms,room,tooth)
+			elif stats.flashlight == false:
+				if rand == 0:
+					var tooth = Tooth.instance()
+					summonItems(rooms,room,tooth)
 
 func summonItems(rooms,room,item):
 	entityLayer.add_child(item)

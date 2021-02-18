@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var stats = Stats
+
 const ACCELERATION = 300
 const MAX_SPEED = 50
 
@@ -108,6 +110,7 @@ func _on_Hurtbox_area_entered(area):
 
 
 func _on_HitBox_body_entered(_body: Node) -> void:
+	stats.stalkerKills += 1
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Menus/DeathScreen.tscn")
 #	body.queue_free()

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var stats = Stats
+
 const ACCELERATION = 300
 const MAX_SPEED = 40
 
@@ -104,6 +106,7 @@ func playStep():
 	SoundFX.play("CrawlerStep",rand_range(1.0,1.6),+5)
 
 func _on_HitBox_body_entered(_body: Node) -> void:
+	stats.crawlerKills += 1
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Menus/DeathScreen.tscn")
 #	body.queue_free()

@@ -94,53 +94,73 @@ anims/StartGame = SubResource( 1 )
 anims/Title = SubResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+margin_left = -36.5
+margin_top = -138.0
+margin_right = 36.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 128.0
-margin_top = 38.0
-margin_right = 192.0
-margin_bottom = 142.0
+margin_right = 73.0
+margin_bottom = 138.0
 alignment = 1
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_right = 64.0
+margin_right = 73.0
+
+[node name="EndlessButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 73.0
+margin_bottom = 26.0
+text = "endless mode"
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 64.0
-margin_bottom = 26.0
+margin_left = 4.0
+margin_top = 30.0
+margin_right = 68.0
+margin_bottom = 52.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "start game"
 
 [node name="ExtrasButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 30.0
-margin_right = 64.0
-margin_bottom = 52.0
+margin_top = 56.0
+margin_right = 73.0
+margin_bottom = 78.0
 text = "extras"
 
 [node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_left = 9.0
-margin_top = 56.0
-margin_right = 54.0
-margin_bottom = 78.0
+margin_left = 14.0
+margin_top = 82.0
+margin_right = 59.0
+margin_bottom = 104.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "options"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_left = 17.0
-margin_top = 82.0
-margin_right = 47.0
-margin_bottom = 104.0
+margin_left = 21.0
+margin_top = 108.0
+margin_right = 51.0
+margin_bottom = 130.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "quit"
+
+[node name="Control2" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 134.0
+margin_right = 73.0
+margin_bottom = 134.0
+
+[node name="Control3" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 138.0
+margin_right = 73.0
+margin_bottom = 138.0
 
 [node name="MenuStats" type="CenterContainer" parent="."]
 margin_right = 40.0
@@ -181,7 +201,7 @@ margin_top = 8.0
 margin_right = 95.0
 margin_bottom = 32.0
 
-[node name="CheckBox" type="CheckBox" parent="TouchScreen/HBoxContainer"]
+[node name="TouchScreenCheckBox" type="CheckBox" parent="TouchScreen/HBoxContainer"]
 margin_right = 24.0
 margin_bottom = 24.0
 
@@ -192,8 +212,38 @@ margin_right = 95.0
 margin_bottom = 21.0
 custom_fonts/font = ExtResource( 4 )
 text = "enable touchscreen"
+
+[node name="Flashlight" type="CenterContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -113.0
+margin_top = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Flashlight"]
+margin_left = 14.0
+margin_top = 8.0
+margin_right = 99.0
+margin_bottom = 32.0
+
+[node name="FlashlightCheckBox" type="CheckBox" parent="Flashlight/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Flashlight/HBoxContainer"]
+margin_left = 28.0
+margin_top = 3.0
+margin_right = 85.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 4 )
+text = "enable flashlight"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExtrasButton" to="." method="_on_ExtrasButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="toggled" from="TouchScreen/HBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="TouchScreen/HBoxContainer/TouchScreenCheckBox" to="." method="_on_TouchScreenCheckBox_toggled"]
+[connection signal="toggled" from="Flashlight/HBoxContainer/FlashlightCheckBox" to="." method="_on_FlashlightCheckBox_toggled"]

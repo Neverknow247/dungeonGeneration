@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/RoomCounter.gd" type="Script" id=1]
 [ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=2]
 [ext_resource path="res://World/TestWorld/Joystick.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/TestWorld/JoystickButton.gd" type="Script" id=4]
+[ext_resource path="res://UI/JoystickTorch.gd" type="Script" id=5]
+[ext_resource path="res://World/TestWorld/joystick1.png" type="Texture" id=6]
+[ext_resource path="res://World/TestWorld/joystick3.png" type="Texture" id=7]
+[ext_resource path="res://World/TestWorld/joystick2.png" type="Texture" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 21.0
 
 [node name="UI" type="CanvasLayer"]
 
@@ -35,6 +43,19 @@ margin_right = 40.0
 margin_bottom = 48.0
 
 [node name="Joystick" parent="." instance=ExtResource( 3 )]
-visible = false
+position = Vector2( 44, 136 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="JoystickFlashlight" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.478431 )
 position = Vector2( 276, 136 )
 scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="JoystickButton" type="TouchScreenButton" parent="JoystickFlashlight"]
+position = Vector2( -32, -32 )
+normal = ExtResource( 8 )
+pressed = ExtResource( 7 )
+shape = SubResource( 1 )
+script = ExtResource( 4 )

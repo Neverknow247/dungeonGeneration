@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
-const ACCELERATION = 200
+var stats = Stats
+
+const ACCELERATION = 195
 const MAX_SPEED = 65
 
 enum {
@@ -45,6 +47,8 @@ func _physics_process(delta):
 			if player != null:
 				if screamed == false:
 					SoundFX.play("GhostScream",rand_range(0.8, 1.2))
+					stats.ghostScreams += 1
+					SaveAndLoad.updateSaveData()
 				screamed = true;
 				accelerate_to_point(player.global_position, ACCELERATION * delta)
 				updateAnimations()
@@ -100,6 +104,7 @@ func _on_Hurtbox_area_entered(area):
 
 
 func _on_HitBox_body_entered(_body: Node) -> void:
+	stats.ghostKills += 1
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Menus/DeathScreen.tscn")
 #	queue_free()

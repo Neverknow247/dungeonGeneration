@@ -8,7 +8,7 @@ onready var MainMenuButton = $CenterContainer/VBoxContainer/MainMenuButton
 onready var QuitButton = $CenterContainer/VBoxContainer/QuitButton
 
 func _ready() -> void:
-	updateSaveData()
+	SaveAndLoad.updateSaveData()
 	StartButton.grab_focus()
 #	stats.currentFloor = 1;
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -23,19 +23,29 @@ func _ready() -> void:
 	else:
 		SoundFX.play("Dead",rand_range(0.6,1.2))
 
-func updateSaveData():
-	var saveData = SaveAndLoad.load_data_from_file()
-	if stats.currentFloor > saveData.highestFloor:
-		saveData.highestFloor = stats.currentFloor
-	saveData.teeth = stats.teeth
-	saveData.totalStepsTaken = stats.totalStepsTaken
-	saveData.totalFloorsComplete = stats.totalFloorsComplete
-	saveData.totalTeethCollected = stats.totalTeethCollected
-	saveData.lightRangeBoost = stats.lightRangeBoost
-	stats.highestFloor = saveData.highestFloor
-	stats.totalFloorsComplete = saveData.totalFloorsComplete
-	stats.totalStepsTaken = saveData.totalStepsTaken
-	SaveAndLoad.save_data_to_file(saveData)
+#func updateSaveData():
+#	var saveData = SaveAndLoad.load_data_from_file()
+#	if stats.currentFloor > saveData.highestFloor:
+#		saveData.highestFloor = stats.currentFloor
+#	if stats.flashlight == true && stats.currentFloor > saveData.highestFloorWithFlashlight:
+#		saveData.highestFloorWithFlashlight = stats.currentFloor
+#
+#
+#	saveData.teeth = stats.teeth
+#	saveData.totalStepsTaken = stats.totalStepsTaken
+#	saveData.totalFloorsComplete = stats.totalFloorsComplete
+#	saveData.totalFloorsCompleteWithFlashlight = stats.totalFloorsCompleteWithFlashlight
+#	saveData.totalTeethCollected = stats.totalTeethCollected
+#	saveData.kindling = stats.kindling
+#	saveData.flashlightUnlocked = stats.flashlightUnlocked
+#
+#
+#	stats.highestFloor = saveData.highestFloor
+#	stats.highestFloorWithFlashlight = saveData.highestFloorWithFlashlight
+#	stats.totalFloorsComplete = saveData.totalFloorsComplete
+#	stats.totalFloorsCompleteWithFlashlight = saveData.totalFloorsCompleteWithFlashlight
+#	stats.totalStepsTaken = saveData.totalStepsTaken
+#	SaveAndLoad.save_data_to_file(saveData)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("Escape"):

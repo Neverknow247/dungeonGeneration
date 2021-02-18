@@ -5,14 +5,18 @@ export(Array, AudioStream) var music_list = []
 var music_list_index = 0
 var sound_mute = false
 var inMenu = false
+var inStore = false
 
 onready var musicPlayer = $GamePlay
 onready var MainMenu = $MainMenu
+onready var Store = $Store
 
 func _ready() -> void:
 	PlayMenuMusic()
 
 func PlayLevelMusic():
+	inStore = false;
+	Store.stop()
 	inMenu = false;
 	MainMenu.stop()
 	randomize()
@@ -20,9 +24,18 @@ func PlayLevelMusic():
 	music_play()
 
 func PlayMenuMusic():
+	inStore = false;
 	inMenu = true;
 	musicPlayer.stop()
+	Store.stop()
 	MainMenu.play()
+
+func PlayStoreMusic():
+	inMenu = false;
+	inStore = true;
+	musicPlayer.stop()
+	MainMenu.stop()
+	Store.play()
 
 func music_play():
 	if sound_mute == false:
@@ -49,5 +62,12 @@ func _on_AudioStreamPlayer_finished() -> void:
 func _on_MainMenu_finished() -> void:
 	if inMenu == true:
 		PlayMenuMusic()
+	else:
+		pass
+
+
+func _on_Store_finished() -> void:
+	if inStore == true:
+		PlayStoreMusic()
 	else:
 		pass

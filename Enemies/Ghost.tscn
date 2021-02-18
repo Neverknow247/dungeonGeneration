@@ -5,7 +5,7 @@
 [ext_resource path="res://Enemies/Ghost.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 55.0
+radius = 64.0703
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0
@@ -96,7 +96,6 @@ position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
-frame = 2
 
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )

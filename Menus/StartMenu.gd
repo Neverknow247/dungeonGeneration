@@ -3,15 +3,29 @@ extends Control
 
 onready var Title = $Title/VBoxContainer/TitleFont
 onready var Animator = $AnimationPlayer
+onready var EndlessButton = $CenterContainer/VBoxContainer/EndlessButton
 onready var StartButton = $CenterContainer/VBoxContainer/StartButton
 onready var ExtrasButton = $CenterContainer/VBoxContainer/ExtrasButton
 onready var OptionsButton = $CenterContainer/VBoxContainer/OptionsButton
 onready var QuitButton = $CenterContainer/VBoxContainer/QuitButton
-onready var touchScreen = $TouchScreen/HBoxContainer/CheckBox
+onready var touchScreen = $TouchScreen/HBoxContainer/TouchScreenCheckBox
+onready var flashlight = $Flashlight/HBoxContainer/FlashlightCheckBox
+onready var flashlightUnlock = $Flashlight
 
 var stats = Stats
+var flashlightUnlocked = stats.flashlightUnlocked
+var endlessUnlocked = stats.endlessUnlocked
 
 func _ready() -> void:
+	if endlessUnlocked == false:
+		EndlessButton.visible = false
+	else:
+		EndlessButton.visible = true
+	
+	if flashlightUnlocked == false:
+		flashlightUnlock.visible = false
+	else:
+		flashlightUnlock.visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	VisualServer.set_default_clear_color(Color.black)
 	StartButton.grab_focus()
@@ -19,12 +33,17 @@ func _ready() -> void:
 		touchScreen.pressed = true
 	else:
 		touchScreen.pressed = false
+	if stats.flashlight == true:
+		flashlight.pressed = true
+	else:
+		flashlight.pressed = false
 #	AnimationPlayer.play("Title")
 	
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("Escape"):
-		get_tree().quit()
+	pass
+#	if Input.is_action_pressed("Escape"):
+#		get_tree().quit()
 
 func StartGame():
 # warning-ignore:return_value_discarded
@@ -55,8 +74,15 @@ func _on_ExtrasButton_pressed() -> void:
 	get_tree().change_scene("res://Menus/ExtrasMenu.tscn")
 
 
-func _on_CheckBox_toggled(button_pressed: bool) -> void:
+func _on_TouchScreenCheckBox_toggled(button_pressed: bool) -> void:
 	if button_pressed == true:
 		stats.touchscreen = true
 	else:
 		stats.touchscreen = false
+
+
+func _on_FlashlightCheckBox_toggled(button_pressed: bool) -> void:
+	if button_pressed == true:
+		stats.flashlight = true
+	else:
+		stats.flashlight = false

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const ACCELERATION = 350
+const ACCELERATION = 650
 const MAX_SPEED = 100
 
 enum {
