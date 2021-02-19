@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/SlickerTitleDynamicFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Menus/TomeMenu.gd" type="Script" id=3]
+
+[node name="TomeMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -33.0
+margin_right = 33.0
+margin_bottom = 44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Title"]
+margin_left = 33.0
+margin_top = 22.0
+margin_right = 33.0
+margin_bottom = 22.0
+
+[node name="TitleLabel" type="Label" parent="Title"]
+margin_right = 66.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 1 )
+text = "tome"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 134.0
+margin_top = 34.0
+margin_right = 186.0
+margin_bottom = 106.0
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_right = 52.0
+
+[node name="ArchivesButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 2.0
+margin_right = 52.0
+margin_bottom = 24.0
+size_flags_horizontal = 4
+text = "archives"
+
+[node name="CardsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_left = 6.0
+margin_top = 26.0
+margin_right = 45.0
+margin_bottom = 48.0
+size_flags_horizontal = 4
+text = "cards"
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_left = 9.0
+margin_top = 50.0
+margin_right = 43.0
+margin_bottom = 72.0
+size_flags_horizontal = 4
+text = "back"
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/ArchivesButton" to="." method="_on_ArchivesButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ArchivesButton" to="." method="_on_ArchivesButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CardsButton" to="." method="_on_CardsButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CardsButton" to="." method="_on_CardsButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/RoomCounter.gd" type="Script" id=1]
 [ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://World/TestWorld/joystick1.png" type="Texture" id=6]
 [ext_resource path="res://World/TestWorld/joystick3.png" type="Texture" id=7]
 [ext_resource path="res://World/TestWorld/joystick2.png" type="Texture" id=8]
+[ext_resource path="res://Items/Compass.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 21.0
@@ -38,9 +39,9 @@ __meta__ = {
 }
 
 [node name="TeethLabel" type="Label" parent="Stats/VBoxContainer"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 40.0
-margin_bottom = 48.0
+margin_bottom = 46.0
 
 [node name="Joystick" parent="." instance=ExtResource( 3 )]
 position = Vector2( 44, 136 )
@@ -59,3 +60,7 @@ normal = ExtResource( 8 )
 pressed = ExtResource( 7 )
 shape = SubResource( 1 )
 script = ExtResource( 4 )
+
+[node name="Compass" parent="." instance=ExtResource( 9 )]
+modulate = Color( 0.662745, 0.662745, 0.662745, 0.635294 )
+position = Vector2( 280, 40 )

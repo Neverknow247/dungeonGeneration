@@ -11,7 +11,10 @@ var sounds = {
 	"Dead0" : load(soundsPath + "dead0.wav"),
 	"Dead1" : load(soundsPath + "dead1.wav"),
 	"Dead2" : load(soundsPath + "dead2.wav"),
-	"CrawlerStep" : load(soundsPath + "crawlerStep.wav")
+	"CrawlerStep" : load(soundsPath + "crawlerStep.wav"),
+	"MenuClick" : load(soundsPath + "menuClick.wav"),
+	"StartGame" : load(soundsPath + "startGameClick.wav"),
+	"ButtonClick" : load(soundsPath + "buttonClick.wav")
 }
 
 onready var soundsPlayers = get_children()

@@ -9,6 +9,7 @@ var default_save_data = {
 	#stats
 	powerOnCount = 0,
 	totalStepsTaken = 0,
+	dungeonAttempts = 0,
 	totalFloorsComplete = 0,
 	totalFloorsCompleteWithFlashlight = 0,
 	totalTeethCollected = 0,
@@ -16,9 +17,10 @@ var default_save_data = {
 	highestFloorWithFlashlight = 0,
 	
 #	killed by
-	crawlerKills = 0,
-	stalkerKills = 0,
-	ghostKills = 0,
+	deaths = 0,
+	deathByCrawler = 0,
+	deathByStalker = 0,
+	deathByGhost = 0,
 	
 #	spawns
 	crawlerSpawns = 0,
@@ -28,10 +30,13 @@ var default_save_data = {
 	
 	#currency
 	teeth = 0,
+	teethSpawned = 0,
 	
 	#upgrades
 	kindling = 0,
 	kindlingPurchased = 0,
+	compass = 0,
+	compassPurchased = 0,
 	
 #	unlockables
 	flashlightUnlocked = false,
@@ -64,27 +69,34 @@ func updateSaveData():
 	
 	saveData.powerOnCount = stats.powerOnCount
 	saveData.teeth = stats.teeth
+	saveData.teethSpawned = stats.teethSpawned
 	saveData.totalStepsTaken = stats.totalStepsTaken
+	saveData.dungeonAttempts = stats.dungeonAttempts
 	saveData.totalFloorsComplete = stats.totalFloorsComplete
 	saveData.totalFloorsCompleteWithFlashlight = stats.totalFloorsCompleteWithFlashlight
 	saveData.totalTeethCollected = stats.totalTeethCollected
 	saveData.kindling = stats.kindling
+	saveData.kindlingPurchased = stats.kindlingPurchased
+	saveData.compass = stats.compass
+	saveData.compassPurchased = stats.compassPurchased
 	saveData.flashlightUnlocked = stats.flashlightUnlocked
 	saveData.endlessUnlocked = stats.endlessUnlocked
 	
-	saveData.crawlerKills = stats.crawlerKills
-	saveData.stalkerKills = stats.stalkerKills
-	saveData.ghostKills = stats.ghostKills
+	saveData.deaths = stats.deaths
+	saveData.deathByCrawler = stats.deathByCrawler
+	saveData.deathByStalker = stats.deathByStalker
+	saveData.deathByGhost = stats.deathByGhost
 	saveData.crawlerSpawns = stats.crawlerSpawns
-	saveData.stalkerSpawns = stats.crawlerSpawns
+	saveData.stalkerSpawns = stats.stalkerSpawns
 	saveData.ghostSpawns = stats.ghostSpawns
 	saveData.ghostScreams = stats.ghostScreams
 	
-	stats.highestFloor = saveData.highestFloor
-	stats.highestFloorWithFlashlight = saveData.highestFloorWithFlashlight
-	stats.totalFloorsComplete = saveData.totalFloorsComplete
-	stats.totalFloorsCompleteWithFlashlight = saveData.totalFloorsCompleteWithFlashlight
-	stats.totalStepsTaken = saveData.totalStepsTaken
+#	stats.highestFloor = saveData.highestFloor
+#	stats.highestFloorWithFlashlight = saveData.highestFloorWithFlashlight
+#	stats.totalFloorsComplete = saveData.totalFloorsComplete
+#	stats.totalFloorsCompleteWithFlashlight = saveData.totalFloorsCompleteWithFlashlight
+#	stats.totalStepsTaken = saveData.totalStepsTaken
+#	stats.teethSpawned = saveData.teethSpawned
 	SaveAndLoad.save_data_to_file(saveData)
 
 func loadData():
@@ -93,19 +105,24 @@ func loadData():
 	stats.highestFloor = saveData.highestFloor
 	stats.highestFloorWithFlashlight = saveData.highestFloorWithFlashlight
 	stats.teeth = saveData.teeth
+	stats.teethSpawned = saveData.teethSpawned
 	stats.totalStepsTaken = saveData.totalStepsTaken
+	stats.dungeonAttempts = saveData.dungeonAttempts
 	stats.totalFloorsComplete = saveData.totalFloorsComplete
 	stats.totalFloorsCompleteWithFlashlight = saveData.totalFloorsCompleteWithFlashlight
 	stats.totalTeethCollected = saveData.totalTeethCollected
 	stats.kindling = saveData.kindling
 	stats.kindlingPurchased = saveData.kindlingPurchased
+	stats.compass = saveData.compass
+	stats.compassPurchased = saveData.compassPurchased
 	stats.flashlightUnlocked = saveData.flashlightUnlocked
 	stats.endlessUnlocked = saveData.endlessUnlocked
 	
-	stats.crawlerKills = saveData.crawlerKills
-	stats.stalkerKills = saveData.stalkerKills
-	stats.ghostKills = saveData.ghostKills
+	stats.deaths = saveData.deaths
+	stats.deathByCrawler = saveData.deathByCrawler
+	stats.deathByStalker = saveData.deathByStalker
+	stats.deathByGhost = saveData.deathByGhost
 	stats.crawlerSpawns = saveData.crawlerSpawns
-	stats.stalkerSpawns = saveData.crawlerSpawns
+	stats.stalkerSpawns = saveData.stalkerSpawns
 	stats.ghostSpawns = saveData.ghostSpawns
 	stats.ghostScreams = saveData.ghostScreams

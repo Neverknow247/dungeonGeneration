@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/startGameClick.wav-310241de75466b592a3b527ea106ad56.sample"
+
+[deps]
+
+source_file="res://Sounds/startGameClick.wav"
+dest_files=[ "res://.import/startGameClick.wav-310241de75466b592a3b527ea106ad56.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

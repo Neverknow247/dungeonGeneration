@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Menus/OptionsMenu.gd" type="Script" id=1]
 [ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=2]
-[ext_resource path="res://Menus/VolumeSlider.gd" type="Script" id=3]
 [ext_resource path="res://UI/SlickerTitleDynamicFont.tres" type="DynamicFont" id=4]
 
 [node name="OptionsMenu" type="Control"]
@@ -26,16 +25,17 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Title"]
 margin_left = 4.0
+margin_top = 1.0
 margin_right = 99.0
-margin_bottom = 48.0
+margin_bottom = 47.0
 
 [node name="Control" type="Control" parent="Title/VBoxContainer"]
 margin_right = 95.0
 
 [node name="TitleLabel" type="Label" parent="Title/VBoxContainer"]
-margin_top = 4.0
+margin_top = 2.0
 margin_right = 95.0
-margin_bottom = 48.0
+margin_bottom = 46.0
 custom_fonts/font = ExtResource( 4 )
 text = "options"
 
@@ -47,44 +47,38 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 85.0
-margin_top = 77.0
-margin_right = 235.0
-margin_bottom = 103.0
+margin_left = 110.0
+margin_top = 54.0
+margin_right = 210.0
+margin_bottom = 126.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_right = 150.0
+margin_right = 100.0
 
-[node name="MasterAudio" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 150.0
-margin_bottom = 26.0
+[node name="VolumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 2.0
+margin_right = 100.0
+margin_bottom = 24.0
+text = "volume"
 
-[node name="MasterLabel" type="Label" parent="CenterContainer/VBoxContainer/MasterAudio"]
-margin_right = 46.0
-margin_bottom = 22.0
-text = "master: "
+[node name="ControlsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 100.0
+margin_bottom = 48.0
+text = "controls"
 
-[node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/MasterAudio"]
-margin_left = 50.0
-margin_right = 150.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 100, 22 )
-max_value = 1.0
-step = 0.05
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BackButton" type="Button" parent="."]
-margin_right = 34.0
-margin_bottom = 22.0
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 100.0
+margin_bottom = 72.0
 text = "back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/MasterAudio/VolumeSlider" to="." method="release_focus"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/MasterAudio/VolumeSlider" to="CenterContainer/VBoxContainer/MasterAudio/VolumeSlider" method="_on_value_changed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/VolumeButton" to="." method="_on_VolumeButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VolumeButton" to="." method="_on_VolumeButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/ControlsButton" to="." method="_on_ControlsButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ControlsButton" to="." method="_on_ControlsButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

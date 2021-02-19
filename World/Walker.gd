@@ -8,9 +8,11 @@ var direction = Vector2.RIGHT
 var borders = Rect2()
 var step_history = []
 var steps_since_turned = 0
+var maxSteps = 0
 var rooms = []
 
-func _init(starting_position, new_borders):
+func _init(starting_position, new_borders, _maxSteps):
+	maxSteps = _maxSteps
 	assert(new_borders.has_point(starting_position))
 	position = starting_position
 	step_history.append(position)
@@ -21,7 +23,7 @@ func walk(steps):
 	for step in steps:
 #		if randf() <= 0.25 || steps_since_turned >= 6:
 #		if randf() <= 0.5 || steps_since_turned >= 6:
-		if steps_since_turned >= 6:
+		if steps_since_turned >= maxSteps:
 			change_direction()
 		
 		if step():

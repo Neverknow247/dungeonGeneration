@@ -104,7 +104,8 @@ func _on_Hurtbox_area_entered(area):
 
 
 func _on_HitBox_body_entered(_body: Node) -> void:
-	stats.ghostKills += 1
+	stats.deathByGhost += 1
+	stats.deaths += 1
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Menus/DeathScreen.tscn")
 #	queue_free()

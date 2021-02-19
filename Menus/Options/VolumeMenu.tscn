@@ -1,0 +1,143 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/SlickerTitleDynamicFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Menus/VolumeSlider.gd" type="Script" id=2]
+[ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=3]
+[ext_resource path="res://Menus/Options/MusicVolumeSlider.gd" type="Script" id=4]
+[ext_resource path="res://Menus/Options/SoundVolumeSlider.gd" type="Script" id=5]
+[ext_resource path="res://Menus/Options/VolumeMenu.gd" type="Script" id=6]
+
+[node name="VolumeMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -50.0
+margin_right = 50.0
+margin_bottom = 44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Title"]
+margin_left = 50.0
+margin_top = 22.0
+margin_right = 50.0
+margin_bottom = 22.0
+
+[node name="TitleLabel" type="Label" parent="Title"]
+margin_right = 100.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 1 )
+text = "volume"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 85.0
+margin_top = 22.0
+margin_right = 235.0
+margin_bottom = 118.0
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_right = 150.0
+
+[node name="MasterAudio" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 2.0
+margin_right = 150.0
+margin_bottom = 24.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="MasterLabel" type="Label" parent="CenterContainer/VBoxContainer/MasterAudio"]
+margin_right = 46.0
+margin_bottom = 22.0
+grow_horizontal = 0
+text = "master: "
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/MasterAudio"]
+margin_left = 50.0
+margin_right = 150.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 100, 22 )
+max_value = 1.0
+step = 0.05
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicAudio" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 150.0
+margin_bottom = 48.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="MusicLabel" type="Label" parent="CenterContainer/VBoxContainer/MusicAudio"]
+margin_left = 8.0
+margin_right = 46.0
+margin_bottom = 22.0
+text = "music:"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/MusicAudio"]
+margin_left = 50.0
+margin_right = 150.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 100, 22 )
+max_value = 1.0
+step = 0.05
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundAudio" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 150.0
+margin_bottom = 72.0
+alignment = 2
+
+[node name="SoundLabel" type="Label" parent="CenterContainer/VBoxContainer/SoundAudio"]
+margin_left = 8.0
+margin_right = 46.0
+margin_bottom = 22.0
+text = "sound:"
+
+[node name="SoundVolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/SoundAudio"]
+margin_left = 50.0
+margin_right = 150.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 100, 22 )
+max_value = 1.0
+step = 0.05
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_left = 58.0
+margin_top = 74.0
+margin_right = 92.0
+margin_bottom = 96.0
+size_flags_horizontal = 4
+text = "back"
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/MasterAudio/VolumeSlider" to="CenterContainer/VBoxContainer/MasterAudio/VolumeSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/MusicAudio/MusicVolumeSlider" to="CenterContainer/VBoxContainer/MusicAudio/MusicVolumeSlider" method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/SoundAudio/SoundVolumeSlider" to="CenterContainer/VBoxContainer/SoundAudio/SoundVolumeSlider" method="_on_SoundVolumeSlider_value_changed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

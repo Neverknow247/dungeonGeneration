@@ -14,11 +14,14 @@ const Crawler = preload("res://Enemies/Crawler.tscn")
 const Ghost = preload("res://Enemies/Ghost.tscn")
 const Stalker = preload("res://Enemies/Stalker.tscn")
 
-var borders = Rect2(1,1,38,21)
-var walker = Walker.new(Vector2(19,11), borders)
+var borders = Rect2(1,1,50,30)
+var walkerSmall = Walker.new(Vector2(19,11), borders, 4)
+var walkerMedium = Walker.new(Vector2(19,11), borders, 6)
+var walkerLarge = Walker.new(Vector2(19,11), borders, 8)
+var walker = null
 var player_position = 0;
 var enemies = []
-var isGhost = false;
+var isGhost = 0;
 var stalkers = 0;
 var ghostCounter = 0;
 var shadowColor = Color.black
@@ -26,6 +29,7 @@ var shadowColor = Color.black
 
 
 onready var tileMap = $TileMap
+onready var compass = $UI/Compass
 onready var entityLayer = $EntityLayer
 
 func _ready():
@@ -43,7 +47,16 @@ func _ready():
 	SaveAndLoad.updateSaveData()
 
 func generate_level():
-	var map = walker.walk(200)
+	var map = null
+	if stats.currentFloor < 3:
+		walker = walkerSmall
+		map = walker.walk(50)
+	elif stats.currentFloor > 14:
+		walker = walkerLarge
+		map = walker.walk(400)
+	else:
+		walker = walkerMedium
+		map = walker.walk(200)
 	
 	var player = Player.instance()
 	entityLayer.add_child(player)
@@ -64,8 +77,19 @@ func generate_level():
 	stats.exit = exit
 #	.position*32
 	
-	add_enemies(exit)
+#	if walker == walkerSmall:
+#		print("Small")
+#	elif walker == walkerLarge:
+#		print("large")
+#	else:
+#		print("Medium")
+#		addEnemiesMedium(exit)
+	addEnemies(exit)
 	addItems(exit)
+	
+#	Activate Compass
+	compass.player = player
+	compass.exit = exit
 	
 	walker.queue_free()
 	for location in map:
@@ -92,7 +116,7 @@ func addLights(player):
 		entityLayer.add_child(lightBuddy)
 		lightBuddy.position = player.position
 
-func add_enemies(exit):
+func addEnemies(exit):
 	var rooms = walker.rooms
 	for room in range(0,rooms.size()):
 		if ((rooms[room].position)*32).distance_to(player_position) < 100:
@@ -102,29 +126,67 @@ func add_enemies(exit):
 		else:
 			var close = false
 			for e in range(0,enemies.size()):
-				if ((rooms[room].position)*32).distance_to(enemies[e]) < 50:
+				if ((rooms[room].position)*32).distance_to(enemies[e]) < 25:
 					close = true
 			if close == true:
 				pass
 			else:
-				var random = floor(rand_range(0,3))
-				if random == 2:
-					var crawler = Crawler.instance()
-					summonEntity(rooms,room,crawler)
-					stats.crawlerSpawns += 1
-				if random == 0 && isGhost == false:
-					if ghostCounter == 5:
-						isGhost = true;
-						var ghost = Ghost.instance()
-						summonEntity(rooms,room,ghost)
-						stats.ghostSpawns += 1
-					else:
-						ghostCounter += 1
-				if random == 1 && stalkers < 2:
-					stalkers += 1;
-					var stalker = Stalker.instance()
-					summonEntity(rooms,room,stalker)
-					stats.stalkerSpawns += 1
+				if walker == walkerSmall:
+					addEnemiesSmall(rooms,room)
+				elif walker == walkerLarge:
+					addEnemiesLarge(rooms,room)
+				else:
+					addEnemiesMedium(rooms,room)
+
+func addEnemiesSmall(rooms,room):
+	var rand = floor(rand_range(0,5))
+	if rand == 0:
+		summonCrawlers(rooms,room)
+
+func addEnemiesMedium(rooms,room):
+	var rand = floor(rand_range(0,3))
+	if rand == 0:
+		summonCrawlers(rooms,room)
+	if rand == 1 && isGhost < 1:
+		if stats.currentFloor > 4:
+			if ghostCounter == 5:
+				isGhost += 1;
+				summonGhosts(rooms,room)
+			else:
+				ghostCounter += 1
+	if rand == 2 && stalkers < 2:
+		summonStalkers(rooms,room)
+
+func addEnemiesLarge(rooms,room):
+	var rand = floor(rand_range(0,10))
+	if rand == 0 || rand == 1 || rand == 2 || rand == 3:
+		summonCrawlers(rooms,room)
+	if rand == 4 || rand == 5 || rand == 6:
+		if isGhost < 3:
+			if ghostCounter == 5:
+				isGhost += 1;
+				summonGhosts(rooms,room)
+			else:
+				ghostCounter += 1
+	if rand == 7 || rand == 8 || rand == 9:
+		if stalkers < 4:
+			summonStalkers(rooms,room)
+
+func summonCrawlers(rooms,room):
+	var crawler = Crawler.instance()
+	summonEntity(rooms,room,crawler)
+	stats.crawlerSpawns += 1
+
+func summonStalkers(rooms,room):
+	stalkers += 1;
+	var stalker = Stalker.instance()
+	summonEntity(rooms,room,stalker)
+	stats.stalkerSpawns += 1
+
+func summonGhosts(rooms,room):
+	var ghost = Ghost.instance()
+	summonEntity(rooms,room,ghost)
+	stats.ghostSpawns += 1
 
 func addItems(exit):
 	var rooms = walker.rooms
@@ -136,13 +198,22 @@ func addItems(exit):
 		else:
 			var rand = floor(rand_range(0,10))
 			if stats.flashlight == true:
-				if rand == 0 || rand == 1:
-					var tooth = Tooth.instance()
-					summonItems(rooms,room,tooth)
-			elif stats.flashlight == false:
+				if rand == 1 || rand == 2:
+					summonTooth(rooms,room)
+			elif stats.flashlight == false && stats.currentFloor <= 14:
 				if rand == 0:
-					var tooth = Tooth.instance()
-					summonItems(rooms,room,tooth)
+					summonTooth(rooms,room)
+			if stats.currentFloor > 14:
+				if rand == 3 || rand == 4:
+					summonTooth(rooms,room)
+			if stats.currentFloor > 24:
+				if rand == 5 || rand == 6:
+					summonTooth(rooms,room)
+
+func summonTooth(rooms,room):
+	var tooth = Tooth.instance()
+	summonItems(rooms,room,tooth)
+	stats.teethSpawned += 1
 
 func summonItems(rooms,room,item):
 	entityLayer.add_child(item)

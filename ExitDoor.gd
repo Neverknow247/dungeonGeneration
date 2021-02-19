@@ -10,12 +10,17 @@ func _on_ExitDoor_body_entered(_body):
 	stats.currentFloor += 1;
 	stats.totalFloorsComplete += 1;
 	
-	if stats.currentFloor > 4 && stats.flashlightUnlocked == false:
+	if stats.currentFloor > 19 && stats.flashlightUnlocked == false:
 		stats.flashlightUnlocked = true
 	
 	SaveAndLoad.updateSaveData()
 	
-	emit_signal("leaving_level")
+	if stats.currentFloor > 15 && stats.endlessOn == false:
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Menus/Credits.tscn")
+	
+	else:
+		emit_signal("leaving_level")
 
 
 #func updateSaveData():

@@ -106,7 +106,8 @@ func playStep():
 	SoundFX.play("CrawlerStep",rand_range(1.0,1.6),+5)
 
 func _on_HitBox_body_entered(_body: Node) -> void:
-	stats.crawlerKills += 1
+	stats.deathByCrawler += 1
+	stats.deaths += 1
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Menus/DeathScreen.tscn")
 #	body.queue_free()
