@@ -1,0 +1,214 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Menus/EndlessMenu.gd" type="Script" id=1]
+[ext_resource path="res://UI/SlickerTitleDynamicFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=3]
+[ext_resource path="res://UI/SlickerSmallDynamicFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UI/SlickerSuperSmallDynamicFont.tres" type="DynamicFont" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "StartGame"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0862745, 0, 0, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "startGame"
+} ]
+}
+
+[node name="EndlessMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -146.0
+margin_right = 146.0
+margin_bottom = 44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Title"]
+margin_left = 146.0
+margin_top = 22.0
+margin_right = 146.0
+margin_bottom = 22.0
+
+[node name="TitleLabel" type="Label" parent="Title"]
+margin_right = 292.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 2 )
+text = "endless mode unlocked"
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer2"]
+margin_left = 3.0
+margin_top = 40.0
+margin_right = 317.0
+margin_bottom = 140.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="Title" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+margin_right = 150.0
+margin_bottom = 22.0
+text = "slicker"
+align = 1
+
+[node name="Endless" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 150.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "endless mode"
+align = 1
+
+[node name="Normal" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+margin_top = 35.0
+margin_right = 150.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 5 )
+text = "normal mode"
+align = 1
+
+[node name="Extras" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+margin_top = 46.0
+margin_right = 150.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 5 )
+text = "extras"
+align = 1
+
+[node name="Options" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+margin_top = 57.0
+margin_right = 150.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 5 )
+text = "options"
+align = 1
+
+[node name="Control" type="Control" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+margin_top = 68.0
+margin_right = 150.0
+margin_bottom = 68.0
+
+[node name="Control2" type="Control" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+margin_top = 70.0
+margin_right = 150.0
+margin_bottom = 70.0
+
+[node name="Control3" type="Control" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+margin_top = 72.0
+margin_right = 150.0
+margin_bottom = 72.0
+
+[node name="Quit" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer2"]
+modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+margin_top = 74.0
+margin_right = 150.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 5 )
+text = "quit"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/HBoxContainer"]
+margin_left = 154.0
+margin_right = 314.0
+margin_bottom = 100.0
+
+[node name="Control" type="Control" parent="CenterContainer2/HBoxContainer/VBoxContainer"]
+margin_right = 160.0
+
+[node name="Control2" type="Control" parent="CenterContainer2/HBoxContainer/VBoxContainer"]
+margin_top = 2.0
+margin_right = 160.0
+margin_bottom = 2.0
+
+[node name="Label" type="Label" parent="CenterContainer2/HBoxContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 160.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 4 )
+text = "though you may have beaten the game it doesn't mean it's over. levels above 14 are more difficult, there are more cards to find and entries in the archives to unlock. whether you decide to dive deeper or stop here, thank you for playing and we hope you enjoyed your time with the slicker demo!"
+autowrap = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -60.5
+margin_top = -40.0
+margin_right = 60.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+margin_top = 9.0
+margin_right = 138.0
+margin_bottom = 31.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="EndlessButton" type="Button" parent="CenterContainer/HBoxContainer"]
+modulate = Color( 0.466667, 0.105882, 0.105882, 1 )
+margin_right = 67.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 67, 0 )
+text = "try now"
+
+[node name="MainMenu" type="Button" parent="CenterContainer/HBoxContainer"]
+margin_left = 71.0
+margin_right = 138.0
+margin_bottom = 22.0
+text = "main menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/StartGame = SubResource( 1 )
+[connection signal="mouse_entered" from="CenterContainer/HBoxContainer/EndlessButton" to="." method="_on_EndlessButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/EndlessButton" to="." method="_on_EndlessButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/HBoxContainer/MainMenu" to="." method="_on_MainMenu_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]

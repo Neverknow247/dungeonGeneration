@@ -4,12 +4,14 @@ var stats = Stats
 
 #Buttons
 onready var BackButton = $BackButton
-onready var KindlingButton = $CenterContainer/VBoxContainer/KindlingButton
-onready var CompassButton = $CenterContainer/VBoxContainer/CompassButton
+onready var KindlingButton = $CenterContainer/VBoxContainer/HBoxContainer/KindlingButton
+onready var HearingButton = $CenterContainer/VBoxContainer/HBoxContainer/HearingButton
+onready var CompassButton = $CenterContainer/VBoxContainer/HBoxContainer/CompassButton
 
 #Labels
 onready var teethLabel = $UpgradeInfo/VBoxContainer/TeethLabel
 onready var kindlingLabel = $UpgradeInfo/VBoxContainer/KindlingLabel
+onready var HearingLabel = $UpgradeInfo/VBoxContainer/HearingLabel
 onready var compassLabel = $UpgradeInfo/VBoxContainer/CompassLabel
 
 func _ready() -> void:
@@ -18,17 +20,20 @@ func _ready() -> void:
 	setLabels()
 	stats.connect("playerTeethChanged", self, "onPlayerTeethChanged")
 	stats.connect("playerKindlingChanged",self,"onPlayerKindlingChanged")
+	stats.connect("playerHearingChanged",self,"onPlayerHearingChanged")
 	stats.connect("playerCompassChanged",self,"onPlayerCompassChanged")
 	BackButton.grab_focus()
 	setButtons()
 
 func setButtons():
 	setKindlingButton()
+	setHearingButton()
 	setCompassButton()
 
 func setLabels():
 	teethLabel.text = "teeth: "+ str(stats.teeth)
 	kindlingLabel.text = "kindling: "+str(stats.kindling)
+	HearingLabel.text = "sonic hearing: "+str(stats.hearing)
 	compassLabel.text = "compasses: "+str(stats.compass)
 
 func onPlayerTeethChanged(value):
@@ -36,6 +41,8 @@ func onPlayerTeethChanged(value):
 
 func onPlayerKindlingChanged(value):
 	kindlingLabel.text = "kindling: "+ str(value)
+func onPlayerHearingChanged(value):
+	HearingLabel.text = "sonic hearing: "+str(value)
 
 func onPlayerCompassChanged(value):
 	compassLabel.text = "compasses: "+str(value)
@@ -72,6 +79,12 @@ func setKindlingButton():
 	else:
 		KindlingButton.disabled = false
 
+func setHearingButton():
+	if stats.teeth < 25:
+		HearingButton.disabled = true
+	else:
+		HearingButton.disabled = false
+
 func _on_CompassButton_pressed() -> void:
 	SoundFX.play("ButtonClick",1,-10)
 	stats.teeth -= 50
@@ -99,4 +112,15 @@ func _on_CompassButton_mouse_exited() -> void:
 	pass # Replace with function body.
 
 func _on_BackButton_mouse_entered() -> void:
+	playMenuClick()
+
+func _on_HearingButton_pressed() -> void:
+	SoundFX.play("ButtonClick",1,-10)
+	stats.teeth -= 25
+	stats.hearing += 1
+	stats.hearingPurchased += 1
+	SaveAndLoad.updateSaveData()
+	setButtons()
+
+func _on_HearingButton_mouse_entered() -> void:
 	playMenuClick()

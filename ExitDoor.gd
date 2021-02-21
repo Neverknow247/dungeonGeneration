@@ -5,12 +5,13 @@ var stats = Stats
 signal leaving_level
 
 func _on_ExitDoor_body_entered(_body):
+	stats.currentFloor += 1;
 	if stats.flashlight == true:
 		stats.totalFloorsCompleteWithFlashlight += 1;
-	stats.currentFloor += 1;
 	stats.totalFloorsComplete += 1;
 	
-	if stats.currentFloor > 19 && stats.flashlightUnlocked == false:
+	if stats.currentFloor > 9 && stats.flashlightUnlocked == false:
+		stats.flashLightJustUnlocked = true
 		stats.flashlightUnlocked = true
 	
 	SaveAndLoad.updateSaveData()

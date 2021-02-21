@@ -1,0 +1,381 @@
+[gd_scene load_steps=79 format=2]
+
+[ext_resource path="res://Menus/TradeMenu.gd" type="Script" id=1]
+[ext_resource path="res://UI/SlickerTheme.tres" type="Theme" id=2]
+[ext_resource path="res://UI/SlickerTitleDynamicFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UI/SlickerSmallDynamicFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Menus/Store/StoreIcons/Kindling0.png" type="Texture" id=5]
+[ext_resource path="res://Menus/Store/StoreIcons/Kindling2.png" type="Texture" id=6]
+[ext_resource path="res://Menus/Store/StoreIcons/Kindling1.png" type="Texture" id=7]
+[ext_resource path="res://Menus/Store/StoreIcons/Kindling3.png" type="Texture" id=8]
+[ext_resource path="res://Menus/Store/StoreIcons/compass1.png" type="Texture" id=9]
+[ext_resource path="res://Menus/Store/StoreIcons/compass3.png" type="Texture" id=10]
+[ext_resource path="res://Menus/Store/StoreIcons/compass2.png" type="Texture" id=11]
+[ext_resource path="res://Menus/Store/StoreIcons/compass4.png" type="Texture" id=12]
+[ext_resource path="res://Menus/Store/StoreIcons/compass0.png" type="Texture" id=13]
+[ext_resource path="res://Menus/Store/StoreIcons/compass6.png" type="Texture" id=14]
+[ext_resource path="res://Menus/Store/StoreIcons/compass5.png" type="Texture" id=15]
+[ext_resource path="res://Menus/Store/StoreIcons/compass7.png" type="Texture" id=16]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker10.png" type="Texture" id=17]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker11.png" type="Texture" id=18]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker0.png" type="Texture" id=19]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker5.png" type="Texture" id=20]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker3.png" type="Texture" id=21]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker2.png" type="Texture" id=22]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker8.png" type="Texture" id=23]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker4.png" type="Texture" id=24]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker6.png" type="Texture" id=25]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker7.png" type="Texture" id=26]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker9.png" type="Texture" id=27]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker1.png" type="Texture" id=28]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker19.png" type="Texture" id=29]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker24.png" type="Texture" id=30]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker21.png" type="Texture" id=31]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker26.png" type="Texture" id=32]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker17.png" type="Texture" id=33]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker18.png" type="Texture" id=34]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker16.png" type="Texture" id=35]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker15.png" type="Texture" id=36]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker20.png" type="Texture" id=37]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker13.png" type="Texture" id=38]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker25.png" type="Texture" id=39]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker23.png" type="Texture" id=40]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker14.png" type="Texture" id=41]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker12.png" type="Texture" id=42]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker27.png" type="Texture" id=43]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker22.png" type="Texture" id=44]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker31.png" type="Texture" id=45]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker37.png" type="Texture" id=46]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker32.png" type="Texture" id=47]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker33.png" type="Texture" id=48]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker39.png" type="Texture" id=49]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker41.png" type="Texture" id=50]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker38.png" type="Texture" id=51]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker40.png" type="Texture" id=52]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker36.png" type="Texture" id=53]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker34.png" type="Texture" id=54]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker43.png" type="Texture" id=55]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker28.png" type="Texture" id=56]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker42.png" type="Texture" id=57]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker30.png" type="Texture" id=58]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker29.png" type="Texture" id=59]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker35.png" type="Texture" id=60]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker49.png" type="Texture" id=61]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker47.png" type="Texture" id=62]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker46.png" type="Texture" id=63]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker44.png" type="Texture" id=64]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker48.png" type="Texture" id=65]
+[ext_resource path="res://Menus/Store/ShopBackgroundSlicker45.png" type="Texture" id=66]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing0.png" type="Texture" id=67]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing1.png" type="Texture" id=68]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing4.png" type="Texture" id=69]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing5.png" type="Texture" id=70]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing3.png" type="Texture" id=71]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing6.png" type="Texture" id=72]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing7.png" type="Texture" id=73]
+[ext_resource path="res://Menus/Store/StoreIcons/hearing2.png" type="Texture" id=74]
+
+[sub_resource type="AnimatedTexture" id=1]
+frames = 50
+fps = 15.0
+frame_0/texture = ExtResource( 19 )
+frame_1/texture = ExtResource( 28 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 22 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 21 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 24 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 20 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 25 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 26 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 23 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 27 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 17 )
+frame_10/delay_sec = 0.0
+frame_11/texture = ExtResource( 18 )
+frame_11/delay_sec = 0.0
+frame_12/texture = ExtResource( 42 )
+frame_12/delay_sec = 0.0
+frame_13/texture = ExtResource( 38 )
+frame_13/delay_sec = 0.0
+frame_14/texture = ExtResource( 41 )
+frame_14/delay_sec = 0.0
+frame_15/texture = ExtResource( 36 )
+frame_15/delay_sec = 0.0
+frame_16/texture = ExtResource( 35 )
+frame_16/delay_sec = 0.0
+frame_17/texture = ExtResource( 33 )
+frame_17/delay_sec = 0.0
+frame_18/texture = ExtResource( 34 )
+frame_18/delay_sec = 0.0
+frame_19/texture = ExtResource( 29 )
+frame_19/delay_sec = 0.0
+frame_20/texture = ExtResource( 37 )
+frame_20/delay_sec = 0.0
+frame_21/texture = ExtResource( 31 )
+frame_21/delay_sec = 0.0
+frame_22/texture = ExtResource( 44 )
+frame_22/delay_sec = 0.0
+frame_23/texture = ExtResource( 40 )
+frame_23/delay_sec = 0.0
+frame_24/texture = ExtResource( 30 )
+frame_24/delay_sec = 0.0
+frame_25/texture = ExtResource( 39 )
+frame_25/delay_sec = 0.0
+frame_26/texture = ExtResource( 32 )
+frame_26/delay_sec = 0.0
+frame_27/texture = ExtResource( 43 )
+frame_27/delay_sec = 0.0
+frame_28/texture = ExtResource( 56 )
+frame_28/delay_sec = 0.0
+frame_29/texture = ExtResource( 59 )
+frame_29/delay_sec = 0.0
+frame_30/texture = ExtResource( 58 )
+frame_30/delay_sec = 0.0
+frame_31/texture = ExtResource( 45 )
+frame_31/delay_sec = 0.0
+frame_32/texture = ExtResource( 47 )
+frame_32/delay_sec = 0.0
+frame_33/texture = ExtResource( 48 )
+frame_33/delay_sec = 0.0
+frame_34/texture = ExtResource( 54 )
+frame_34/delay_sec = 0.0
+frame_35/texture = ExtResource( 60 )
+frame_35/delay_sec = 0.0
+frame_36/texture = ExtResource( 53 )
+frame_36/delay_sec = 0.0
+frame_37/texture = ExtResource( 46 )
+frame_37/delay_sec = 0.0
+frame_38/texture = ExtResource( 51 )
+frame_38/delay_sec = 0.0
+frame_39/texture = ExtResource( 49 )
+frame_39/delay_sec = 0.0
+frame_40/texture = ExtResource( 52 )
+frame_40/delay_sec = 0.0
+frame_41/texture = ExtResource( 50 )
+frame_41/delay_sec = 0.0
+frame_42/texture = ExtResource( 57 )
+frame_42/delay_sec = 0.0
+frame_43/texture = ExtResource( 55 )
+frame_43/delay_sec = 0.0
+frame_44/texture = ExtResource( 64 )
+frame_44/delay_sec = 0.0
+frame_45/texture = ExtResource( 66 )
+frame_45/delay_sec = 0.0
+frame_46/texture = ExtResource( 63 )
+frame_46/delay_sec = 0.0
+frame_47/texture = ExtResource( 62 )
+frame_47/delay_sec = 0.0
+frame_48/texture = ExtResource( 65 )
+frame_48/delay_sec = 0.0
+frame_49/texture = ExtResource( 61 )
+frame_49/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=2]
+frames = 4
+frame_0/texture = ExtResource( 5 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 6 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 8 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 8
+frame_0/texture = ExtResource( 67 )
+frame_1/texture = ExtResource( 68 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 74 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 71 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 69 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 70 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 72 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 73 )
+frame_7/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=3]
+frames = 8
+frame_0/texture = ExtResource( 13 )
+frame_1/texture = ExtResource( 9 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 11 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 10 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 12 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 15 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 14 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 16 )
+frame_7/delay_sec = 0.0
+
+[node name="TradeMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -33.5
+margin_right = 33.5
+margin_bottom = 44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Title"]
+margin_left = 37.0
+margin_top = 22.0
+margin_right = 37.0
+margin_bottom = 22.0
+
+[node name="TitleLabel" type="Label" parent="Title"]
+margin_right = 74.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+text = "trade"
+
+[node name="UpgradeInfo" type="CenterContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -9.0
+margin_right = 8.0
+margin_bottom = 9.0
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeInfo"]
+margin_right = 8.0
+margin_bottom = 78.0
+
+[node name="TeethLabel" type="Label" parent="UpgradeInfo/VBoxContainer"]
+margin_right = 8.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="KindlingLabel" type="Label" parent="UpgradeInfo/VBoxContainer"]
+margin_top = 20.0
+margin_right = 8.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="HearingLabel" type="Label" parent="UpgradeInfo/VBoxContainer"]
+margin_top = 40.0
+margin_right = 8.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="CompassLabel" type="Label" parent="UpgradeInfo/VBoxContainer"]
+margin_top = 60.0
+margin_right = 8.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -131.5
+margin_top = -94.0
+margin_right = 131.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_top = 34.0
+margin_right = 263.0
+margin_bottom = 59.0
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_right = 263.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 2.0
+margin_right = 263.0
+margin_bottom = 25.0
+
+[node name="KindlingButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 76.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 4 )
+text = "kindling: 5 teeth"
+icon = SubResource( 2 )
+
+[node name="HearingButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 80.0
+margin_right = 176.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 4 )
+text = "sonic hearing: 25 teeth"
+icon = SubResource( 4 )
+
+[node name="CompassButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 180.0
+margin_right = 263.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 4 )
+text = "compass: 50 teeth"
+icon = SubResource( 3 )
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -17.0
+margin_top = -22.0
+margin_right = 17.0
+text = "back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/KindlingButton" to="." method="_on_KindlingButton_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/HBoxContainer/KindlingButton" to="." method="_on_KindlingButton_mouse_exited"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/KindlingButton" to="." method="_on_KindlingButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/HearingButton" to="." method="_on_HearingButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/HearingButton" to="." method="_on_HearingButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/CompassButton" to="." method="_on_CompassButton_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/HBoxContainer/CompassButton" to="." method="_on_CompassButton_mouse_exited"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/CompassButton" to="." method="_on_CompassButton_pressed"]
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_BackButton_mouse_entered"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

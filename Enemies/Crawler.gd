@@ -4,6 +4,7 @@ var stats = Stats
 
 const ACCELERATION = 300
 const MAX_SPEED = 40
+const SoundWave = preload("res://Items/SuperHearing/SoundWaves.tscn")
 
 enum {
 	IDLE,
@@ -104,6 +105,18 @@ func _on_Hurtbox_area_entered(area):
 
 func playStep():
 	SoundFX.play("CrawlerStep",rand_range(1.0,1.6),+5)
+	if stats.hearingOn == true:
+		summonSoundWave()
+
+func summonSoundWave():
+	var soundWave = SoundWave.instance()
+	get_parent().add_child(soundWave)
+	soundWave.position = global_position
+	var randx = rand_range(-2,2)
+	var randy = rand_range(-2,2)
+	soundWave.position.x += randx
+	soundWave.position.y += randy
+	
 
 func _on_HitBox_body_entered(_body: Node) -> void:
 	stats.deathByCrawler += 1

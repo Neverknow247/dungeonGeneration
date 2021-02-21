@@ -92,4 +92,4 @@ func closing():
 
 func finish():
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Menus/StartMenu.tscn")
+	get_tree().change_scene("res://Menus/EndlessMenu.tscn")

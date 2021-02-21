@@ -1,6 +1,6 @@
 extends Control
 
-onready var BackButton = $CenterContainer/VBoxContainer/BackButton
+onready var BackButton = $BackButton
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -29,7 +29,8 @@ func _on_VolumeButton_pressed() -> void:
 
 func _on_ControlsButton_pressed() -> void:
 	SoundFX.play("ButtonClick",1,-10)
-	pass # Replace with function body.
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Menus/ControlsMenu.tscn")
 
 
 func _on_VolumeButton_mouse_entered() -> void:

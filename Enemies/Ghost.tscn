@@ -5,7 +5,7 @@
 [ext_resource path="res://Enemies/Ghost.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 64.0703
+radius = 72.0625
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.0

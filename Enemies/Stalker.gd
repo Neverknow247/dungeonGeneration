@@ -4,6 +4,7 @@ var stats = Stats
 
 const ACCELERATION = 300
 const MAX_SPEED = 50
+const SoundWave = preload("res://Items/SuperHearing/SoundWaves.tscn")
 
 enum {
 	IDLE,
@@ -85,6 +86,8 @@ func breathe():
 	var rand = floor(rand_range(0,100))
 	if rand == 0:
 		SoundFX.play("StalkerBreathe", rand_range(0.6,1.0),-5)
+		if stats.hearingOn == true:
+			summonSoundWave()
 
 func pick_random_state(state_list):
 	state_list.shuffle()
@@ -108,6 +111,14 @@ func _on_Hurtbox_area_entered(area):
 	var knockback_vector = area.get_parent().get_parent().roll_vector # TODO: Clean this
 	knockback = knockback_vector * 400
 
+func summonSoundWave():
+	var soundWave = SoundWave.instance()
+	get_parent().add_child(soundWave)
+	soundWave.position = global_position
+	var randx = rand_range(-2,2)
+	var randy = rand_range(-2,2)
+	soundWave.position.x += randx
+	soundWave.position.y += randy
 
 func _on_HitBox_body_entered(_body: Node) -> void:
 	stats.deathByStalker += 1

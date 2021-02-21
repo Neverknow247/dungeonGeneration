@@ -5,7 +5,10 @@ var exit = null setget setExit
 
 var touchscreen = false
 var flashlight = false
+var flashLightJustUnlocked = false
 var compassOn = false
+var kindlingOn = false setget setKindlingOn
+var hearingOn = false
 var endlessOn = false
 
 var flashlightUnlocked = false
@@ -36,6 +39,8 @@ var teethSpawned = 0
 
 var kindling = 0 setget setKindling
 var kindlingPurchased = 0
+var hearing = 0 setget setHearing
+var hearingPurchased = 0
 var compass = 0 setget setCompass
 var compassPurchased = 0
 
@@ -43,7 +48,9 @@ signal playerTeethChanged(value)
 signal playerChanged(value)
 signal exitChanged(value)
 signal playerKindlingChanged(value)
+signal playerHearingChanged(value)
 signal playerCompassChanged(value)
+signal playerKindlingOnChanged(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,6 +59,14 @@ func _ready() -> void:
 func setKindling(value):
 	kindling = value
 	emit_signal("playerKindlingChanged",kindling)
+
+func setHearing(value):
+	hearing = value
+	emit_signal("playerHearingChanged",hearing)
+
+func setKindlingOn(value):
+	kindlingOn = value
+	emit_signal("playerKindlingOnChanged",kindlingOn)
 
 func setCompass(value):
 	compass = value

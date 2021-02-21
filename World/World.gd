@@ -29,7 +29,7 @@ var shadowColor = Color.black
 
 
 onready var tileMap = $TileMap
-onready var compass = $UI/Compass
+onready var compass = $UI/ItemCompass/Compass
 onready var entityLayer = $EntityLayer
 
 func _ready():
@@ -198,7 +198,7 @@ func addItems(exit):
 		else:
 			var rand = floor(rand_range(0,10))
 			if stats.flashlight == true:
-				if rand == 1 || rand == 2:
+				if rand == 0 || rand == 1 || rand == 2:
 					summonTooth(rooms,room)
 			elif stats.flashlight == false && stats.currentFloor <= 14:
 				if rand == 0:

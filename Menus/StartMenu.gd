@@ -9,7 +9,7 @@ onready var EndlessButton = $CenterContainer/VBoxContainer/EndlessButton
 onready var StartButton = $CenterContainer/VBoxContainer/StartButton
 onready var ExtrasButton = $CenterContainer/VBoxContainer/ExtrasButton
 onready var OptionsButton = $CenterContainer/VBoxContainer/OptionsButton
-onready var QuitButton = $CenterContainer/VBoxContainer/QuitButton
+onready var QuitButton = $QuitButton
 onready var touchScreen = $TouchScreen/HBoxContainer/TouchScreenCheckBox
 onready var flashlight = $Flashlight/HBoxContainer/FlashlightCheckBox
 onready var flashlightUnlock = $Flashlight
@@ -23,6 +23,7 @@ func _ready() -> void:
 		EndlessButton.visible = false
 	else:
 		Animator.play("Title")
+		StartButton.text = "normal mode"
 		EndlessButton.visible = true
 	
 	if flashlightUnlocked == false:
@@ -63,6 +64,9 @@ func _on_StartButton_pressed() -> void:
 	if stats.compass > 0:
 		stats.compass -= 1
 		stats.compassOn = true
+	if stats.hearing > 0:
+		stats.hearing -= 1
+		stats.hearingOn = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	EndlessButton.disabled = true
 	StartButton.disabled = true
@@ -112,6 +116,9 @@ func _on_EndlessButton_pressed() -> void:
 	if stats.compass > 0:
 		stats.compass -= 1
 		stats.compassOn = true
+	if stats.hearing > 0:
+		stats.hearing -= 1
+		stats.hearingOn = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	EndlessButton.disabled = true
 	StartButton.disabled = true

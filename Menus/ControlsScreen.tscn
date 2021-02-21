@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/SlickerSmallDynamicFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Menus/Controls.png" type="Texture" id=2]
+
+[node name="ControlsScreen" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W" type="Label" parent="."]
+margin_left = 47.5944
+margin_top = 50.5143
+margin_right = 61.5944
+margin_bottom = 72.5143
+custom_fonts/font = ExtResource( 1 )
+text = "w"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A" type="Label" parent="."]
+margin_left = 33.5789
+margin_top = 70.0776
+margin_right = 47.5789
+margin_bottom = 92.0776
+custom_fonts/font = ExtResource( 1 )
+text = "a"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S" type="Label" parent="."]
+margin_left = 52.8502
+margin_top = 70.0776
+margin_right = 66.8502
+margin_bottom = 92.0776
+custom_fonts/font = ExtResource( 1 )
+text = "s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="Label" parent="."]
+margin_left = 70.9536
+margin_top = 70.0776
+margin_right = 84.9536
+margin_bottom = 92.0776
+custom_fonts/font = ExtResource( 1 )
+text = "d"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enter" type="Label" parent="."]
+margin_left = 168.346
+margin_top = 86.0001
+margin_right = 191.346
+margin_bottom = 108.0
+custom_fonts/font = ExtResource( 1 )
+text = "enter"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Or" type="Label" parent="."]
+margin_left = 49.7063
+margin_top = 84.7707
+margin_right = 72.7063
+margin_bottom = 106.771
+custom_fonts/font = ExtResource( 1 )
+text = "or"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToMove" type="Label" parent="."]
+margin_left = 41.1003
+margin_top = 136.407
+margin_right = 75.1003
+margin_bottom = 158.407
+custom_fonts/font = ExtResource( 1 )
+text = "to move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToUseItems" type="Label" parent="."]
+margin_left = 134.537
+margin_top = 103.212
+margin_right = 179.537
+margin_bottom = 125.212
+custom_fonts/font = ExtResource( 1 )
+text = "to use items"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToControlTheFlashlight" type="Label" parent="."]
+margin_left = 210.454
+margin_top = 128.416
+margin_right = 292.454
+margin_bottom = 150.416
+custom_fonts/font = ExtResource( 1 )
+text = "to control the flashlight"
+__meta__ = {
+"_edit_use_anchors_": false
+}

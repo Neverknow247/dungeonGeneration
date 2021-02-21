@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
-const ACCELERATION = 450
-const MAX_SPEED = 85
+const ACCELERATION = 500
+const MAX_SPEED = 76
+
 
 enum {
 	IDLE,

@@ -5,13 +5,14 @@ var stats = Stats
 
 onready var StartButton = $CenterContainer/VBoxContainer/StartGameButton
 onready var MainMenuButton = $CenterContainer/VBoxContainer/MainMenuButton
-onready var QuitButton = $CenterContainer/VBoxContainer/QuitButton
+onready var QuitButton = $QuitButton
 
 func playMenuClick():
 	SoundFX.play("MenuClick",1,-10)
 
 func _ready() -> void:
 	stats.compassOn = false
+	stats.hearingOn = false
 	SaveAndLoad.updateSaveData()
 	StartButton.grab_focus()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -25,6 +26,10 @@ func _ready() -> void:
 		SoundFX.play("Dead2",rand_range(0.6,1.2))
 	else:
 		SoundFX.play("Dead",rand_range(0.6,1.2))
+	if stats.flashLightJustUnlocked == true:
+		stats.flashLightJustUnlocked = false
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Menus/FlashlightMenu.tscn")
 
 func _on_StartGameButton_pressed() -> void:
 	SoundFX.play("StartGame")

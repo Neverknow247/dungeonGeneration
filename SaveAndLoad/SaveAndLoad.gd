@@ -4,6 +4,7 @@ var stats = Stats
 
 const SAVE_DATA_PATH = "res://save_data.json"
 #const SAVE_DATA_PATH = "user://save_data.json"
+#var SAVE_DATA_PATH = f.open_encrypted_with_pass("res://save_data.json", File.WRITE, "mypass")
 
 var default_save_data = {
 	#stats
@@ -35,6 +36,8 @@ var default_save_data = {
 	#upgrades
 	kindling = 0,
 	kindlingPurchased = 0,
+	hearing = 0,
+	hearingPurchased = 0,
 	compass = 0,
 	compassPurchased = 0,
 	
@@ -43,11 +46,13 @@ var default_save_data = {
 	endlessUnlocked = false
 }
 
+
+
 func save_data_to_file(save_data):
 	var json_string = to_json(save_data)
 	var save_file = File.new()
-	save_file.open(SAVE_DATA_PATH, File.WRITE)
-	save_file.store_line(json_string)
+	save_file.open_encrypted_with_pass(SAVE_DATA_PATH, File.WRITE, "areYouWinningSon")
+	save_file.store_var(json_string)
 	save_file.close()
 
 func load_data_from_file():
@@ -55,7 +60,7 @@ func load_data_from_file():
 	if not save_file.file_exists(SAVE_DATA_PATH):
 		return default_save_data
 	
-	save_file.open(SAVE_DATA_PATH, File.READ)
+	save_file.open_encrypted_with_pass(SAVE_DATA_PATH, File.READ, "areYouWinningSon")
 	var save_data = parse_json(save_file.get_as_text())
 	save_file.close()
 	return save_data
@@ -77,6 +82,8 @@ func updateSaveData():
 	saveData.totalTeethCollected = stats.totalTeethCollected
 	saveData.kindling = stats.kindling
 	saveData.kindlingPurchased = stats.kindlingPurchased
+	saveData.hearing = stats.hearing
+	saveData.hearingPurchased = stats.hearingPurchased
 	saveData.compass = stats.compass
 	saveData.compassPurchased = stats.compassPurchased
 	saveData.flashlightUnlocked = stats.flashlightUnlocked
@@ -98,6 +105,7 @@ func updateSaveData():
 #	stats.totalStepsTaken = saveData.totalStepsTaken
 #	stats.teethSpawned = saveData.teethSpawned
 	SaveAndLoad.save_data_to_file(saveData)
+	loadData()
 
 func loadData():
 	var saveData = load_data_from_file()
@@ -113,6 +121,8 @@ func loadData():
 	stats.totalTeethCollected = saveData.totalTeethCollected
 	stats.kindling = saveData.kindling
 	stats.kindlingPurchased = saveData.kindlingPurchased
+	stats.hearing = saveData.hearing
+	stats.hearingPurchased = saveData.hearingPurchased
 	stats.compass = saveData.compass
 	stats.compassPurchased = saveData.compassPurchased
 	stats.flashlightUnlocked = saveData.flashlightUnlocked

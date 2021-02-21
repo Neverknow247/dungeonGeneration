@@ -7,6 +7,11 @@ export var Speed = 75
 onready var Animator = $Animator
 onready var joystick = get_parent().get_parent().get_node("UI/Joystick/JoystickButton")
 
+func _ready() -> void:
+	pass
+#	if get_parent().get_parent().get_node("UI/Joystick/JoystickButton"):
+#		joystick = get_parent().get_parent().get_node("UI/Joystick/JoystickButton")
+
 func _physics_process(_delta):
 	if stats.touchscreen == false:
 		var x_input = Input.get_action_strength("Right") - Input.get_action_strength("Left")
@@ -56,4 +61,5 @@ func playStep():
 	SoundFX.play("Step",rand_range(0.6,1.0),0.5)
 	stats.totalStepsTaken += 1
 
-
+func _on_HurtBox_body_entered(_body: Node) -> void:
+	pass # Replace with function body.

@@ -67,16 +67,30 @@ margin_bottom = 48.0
 size_flags_horizontal = 4
 text = "cards"
 
-[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_left = 9.0
+[node name="StatsButton" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 50.0
-margin_right = 43.0
+margin_right = 52.0
 margin_bottom = 72.0
+text = "stats"
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -17.0
+margin_top = -22.0
+margin_right = 17.0
 size_flags_horizontal = 4
 text = "back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/ArchivesButton" to="." method="_on_ArchivesButton_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ArchivesButton" to="." method="_on_ArchivesButton_pressed"]
 [connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CardsButton" to="." method="_on_CardsButton_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CardsButton" to="." method="_on_CardsButton_pressed"]
-[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_mouse_entered"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/StatsButton" to="." method="_on_StatsButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StatsButton" to="." method="_on_StatsButton_pressed"]
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_BackButton_mouse_entered"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

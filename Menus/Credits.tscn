@@ -7,12 +7,11 @@
 [ext_resource path="res://UI/SlickerSmallDynamicFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UI/SlickerDynamicFont.tres" type="DynamicFont" id=6]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 42
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "rollCredits"
+[sub_resource type="Animation" id=2]
 length = 24.0
 step = 2.0
 tracks/0/type = "method"
@@ -142,9 +141,9 @@ margin_top = 76.0
 margin_right = 164.0
 margin_bottom = 103.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 align = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "rollCredits"
-anims/rollCredits = SubResource( 1 )
+anims/rollCredits = SubResource( 2 )
